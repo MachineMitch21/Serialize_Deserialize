@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Serialize_Deserialize\Serialize_Deserialize.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Serialize_Deserialize\Program.cs">
+    <Files>
+      <File FileName="Serialize_Deserialize\Program.cs" Line="42" Column="44" />
+      <File FileName="Serialize_Deserialize\RosterSaveManager.cs" Line="51" Column="58" />
+      <File FileName="Serialize_Deserialize\Roster.cs" Line="65" Column="61" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

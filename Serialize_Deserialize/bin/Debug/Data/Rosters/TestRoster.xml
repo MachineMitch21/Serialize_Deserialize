@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Roster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RosterName>TestRoster</RosterName>
+  <Employees>
+    <Employee>
+      <id>0</id>
+      <name>Jim</name>
+      <title>Manager</title>
+      <salary>45000</salary>
+    </Employee>
+    <Employee>
+      <id>1</id>
+      <name>Jeff</name>
+      <title>Supervisor</title>
+      <salary>50000</salary>
+    </Employee>
+    <Employee>
+      <id>2</id>
+      <name>Tim</name>
+      <title>Programmer</title>
+      <salary>80000</salary>
+    </Employee>
+    <Employee>
+      <id>3</id>
+      <name>Janice</name>
+      <title>HR</title>
+      <salary>40000</salary>
+    </Employee>
+    <Employee>
+      <id>4</id>
+      <name>Larry</name>
+      <title>IT</title>
+      <salary>38000</salary>
+    </Employee>
+  </Employees>
+</Roster>

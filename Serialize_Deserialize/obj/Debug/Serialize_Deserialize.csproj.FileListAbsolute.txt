@@ -1,0 +1,6 @@
+c:\users\mitch\documents\visual studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Debug\Serialize_Deserialize.exe.config
+c:\users\mitch\documents\visual studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Debug\Serialize_Deserialize.exe
+c:\users\mitch\documents\visual studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Debug\Serialize_Deserialize.pdb
+c:\users\mitch\documents\visual studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\obj\Debug\Serialize_Deserialize.csprojResolveAssemblyReference.cache
+c:\users\mitch\documents\visual studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\obj\Debug\Serialize_Deserialize.exe
+c:\users\mitch\documents\visual studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\obj\Debug\Serialize_Deserialize.pdb
