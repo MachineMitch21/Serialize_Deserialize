@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Serialize_Deserialize
 {
+    /// <summary>
+    /// Holds a list of Employee objects 
+    /// </summary>
     [Serializable]
 	[XmlRoot("Roster")]
     public class Roster

@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Serialize_Deserialize
 {
+    /// <summary>
+    /// Employee object to represent employee data
+    /// </summary>
     [Serializable]
 	[XmlRoot("Employee")]
     public class Employee
@@ -17,6 +20,11 @@ namespace Serialize_Deserialize
             _title = "New Employee";
             _salary = 0.0f;
         }
+
+		public Employee(int id)
+		{
+			_id = id;
+		}
 
         public Employee(int id, string name, string title, float salary)
         {

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Roster xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RosterName>DifRoster</RosterName>
+  <Employees>
+    <Employee>
+      <id>0</id>
+      <name>Rex</name>
+      <title>Forklift Driver</title>
+      <salary>25000</salary>
+    </Employee>
+  </Employees>
+</Roster>

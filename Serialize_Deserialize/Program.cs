@@ -9,20 +9,34 @@ namespace Serialize_Deserialize
     public class Program
     {
         static void Main(string[] args)
-        {
-			
+		{
 			Roster roster = new Roster("TestRoster", new Employee[] {	new Employee(0, "Joe", "Manager", 45000), 
-																		new Employee(1, "Jeff", "Supervisor", 50000), 
-																		new Employee(2, "Tim", "Programmer", 80000),	
-																		new Employee(3, "Janice", "HR", 40000),
-																		new Employee(4, "Larry", "IT", 38000)			});
-			
-			RosterSaveManager rsm = new XmlSaveManager();
-			rsm.Save(roster);
+				new Employee(1, "Jeff", "Supervisor", 50000),
+				new Employee(2, "Tim", "Programmer", 80000),
+				new Employee(3, "Janice", "HR", 40000),
+				new Employee(4, "Larry", "IT", 38000),
+				new Employee(5, "Heidi", "Management consultant", 35000)
+			});
 
+			Roster difRoster = new Roster("DifRoster", new Employee[] { new Employee(0, "Rex", "Forklift Driver", 25000)});
+			
+			RosterSaveManager rsm = new BinarySaveManager();
+			rsm.Save(roster);
 			Roster test = rsm.Load("TestRoster");
 
+			RosterSaveManager difSaveMan = new BinarySaveManager();
+			difSaveMan.Save(difRoster);
+			Roster test2 = difSaveMan.Load("DifRoster");
+
 			Out(test.ToString());
+			Out(test2.ToString());
+
+			for (int i = 0; i < rsm.GetRosterFileNames().Length; i++)
+			{
+				Out(rsm.GetRosterFileNames()[i]);
+			}
+
+            Read();
         }
 
 
@@ -102,16 +116,28 @@ namespace Serialize_Deserialize
             }
         }
 
+        /// <summary>
+        /// Implements Console.WriteLine(object)
+        /// </summary>
+        /// <param name="output"></param>
         static void Out(object output)
         {
             Console.WriteLine(output);
         }
 
+        /// <summary>
+        /// Implements Console.Read()
+        /// </summary>
+        /// <returns></returns>
         static int Read()
         {
             return Console.Read();
         }
 
+        /// <summary>
+        /// Implements Console.ReadLine()
+        /// </summary>
+        /// <returns></returns>
         static string ReadLine()
         {
             while (Console.KeyAvailable)

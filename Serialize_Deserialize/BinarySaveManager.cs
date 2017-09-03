@@ -36,7 +36,7 @@ namespace Serialize_Deserialize
 
 		public override Roster Load(string fileName)
 		{
-			if (GetRosterFileNames().Contains(_filePath + verifyExtension(ref fileName)))
+			if (GetRosterFileNames().Contains(verifyExtension(ref fileName)))
 			{
 
 				FileStream fs = new FileStream(_filePath + fileName, FileMode.Open);

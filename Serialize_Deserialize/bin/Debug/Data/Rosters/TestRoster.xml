@@ -4,7 +4,7 @@
   <Employees>
     <Employee>
       <id>0</id>
-      <name>Jim</name>
+      <name>Joe</name>
       <title>Manager</title>
       <salary>45000</salary>
     </Employee>
@@ -31,6 +31,12 @@
       <name>Larry</name>
       <title>IT</title>
       <salary>38000</salary>
+    </Employee>
+    <Employee>
+      <id>5</id>
+      <name>Heidi</name>
+      <title>Management consultant</title>
+      <salary>35000</salary>
     </Employee>
   </Employees>
 </Roster>
