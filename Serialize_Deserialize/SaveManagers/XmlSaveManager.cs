@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System.Linq;
+using System.Xml.Serialization;
 using System.Runtime.Serialization;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace Serialize_Deserialize
 {
-	public class BinarySaveManager : RosterSaveManager
+	public class XmlSaveManager : GenericSaveManager
 	{
-		public BinarySaveManager()
+		public XmlSaveManager()
 		{
-			_fileExt = ".bin";
+			_fileExt = ".xml";
+            _formatter = new XmlFormatter<Roster>();
 		}
 
 		public override void Save(Roster roster)
 		{
 			FileStream fs = new FileStream(_filePath + verifyExtension(roster.RosterName), FileMode.Create);
-			BinaryFormatter binaryFormatter = new BinaryFormatter();
 
 			try
 			{
-				binaryFormatter.Serialize(fs, roster);
+				_formatter.Serialize(fs, roster);
 			}
 			catch(SerializationException se)
 			{
@@ -38,13 +37,11 @@ namespace Serialize_Deserialize
 		{
 			if (GetRosterFileNames().Contains(verifyExtension(ref fileName)))
 			{
-
 				FileStream fs = new FileStream(_filePath + fileName, FileMode.Open);
-				BinaryFormatter binaryFormatter = new BinaryFormatter();
 
 				try
 				{
-					Roster loadedRoster = (Roster)binaryFormatter.Deserialize(fs);
+					Roster loadedRoster = (Roster)_formatter.Deserialize(fs);
 					return loadedRoster;
 				}
 				catch(SerializationException se)

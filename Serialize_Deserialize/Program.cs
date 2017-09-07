@@ -3,39 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+
+
 
 namespace Serialize_Deserialize
 {
+
     public class Program
     {
+        public static string[] names = new string[10] { "Dan", "Jim", "Donna", "Jessica", "Joe", "Bob", "Heidi", "Jack", "Joanne", "Pat" };
+        public static string[] jobs = new string[5] { "Supervisor", "Programmer", "HR", "IT", "Membership Consultant" };
+        public static int[] salaries = new int[5] { 10000, 20000, 30000, 40000, 50000 };
+
         static void Main(string[] args)
 		{
-			Roster roster = new Roster("TestRoster", new Employee[] {	new Employee(0, "Joe", "Manager", 45000), 
-				new Employee(1, "Jeff", "Supervisor", 50000),
-				new Employee(2, "Tim", "Programmer", 80000),
-				new Employee(3, "Janice", "HR", 40000),
-				new Employee(4, "Larry", "IT", 38000),
-				new Employee(5, "Heidi", "Management consultant", 35000)
-			});
+            Random random = new Random();
 
-			Roster difRoster = new Roster("DifRoster", new Employee[] { new Employee(0, "Rex", "Forklift Driver", 25000)});
-			
-			RosterSaveManager rsm = new BinarySaveManager();
-			rsm.Save(roster);
-			Roster test = rsm.Load("TestRoster");
+            Roster bigRoster = new Roster("BigRoster");
+            
+            for (int i = 0; i < 10000; i++)
+            {
+                bigRoster.AddEmployee(new Employee(i + 1, names[random.Next(0, names.Length - 1)], jobs[random.Next(0, jobs.Length - 1)], salaries[random.Next(0, salaries.Length - 1)]));
+            }
 
-			RosterSaveManager difSaveMan = new BinarySaveManager();
-			difSaveMan.Save(difRoster);
-			Roster test2 = difSaveMan.Load("DifRoster");
+            RosterSaveManager rsm = new XmlSaveManager();
 
-			Out(test.ToString());
-			Out(test2.ToString());
+            Out("Saving...");
+            rsm.Save(bigRoster);
+            
+            Roster loadedBigRoster = null;
+            ThreadStart start = new ThreadStart(delegate()
+            {
+                Out("Loading...");
+                loadedBigRoster = rsm.Load("BigRoster");
+            });
 
-			for (int i = 0; i < rsm.GetRosterFileNames().Length; i++)
-			{
-				Out(rsm.GetRosterFileNames()[i]);
-			}
+            Thread loadThread = new Thread(start);
 
+            loadThread.Start();
+            loadThread.Join();
+
+
+            Out("Waiting for loading to complete..");
+
+            Out(loadedBigRoster.ToString());
             Read();
         }
 
