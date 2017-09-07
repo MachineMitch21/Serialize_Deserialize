@@ -72,7 +72,7 @@ namespace Serialize_Deserialize
             return _employees.IndexOf(employee);
         }
 
-		public override string ToString ()
+		public override string ToString()
 		{
 			string employeeDescs = "\n";
 
@@ -80,7 +80,7 @@ namespace Serialize_Deserialize
 			{
 				employeeDescs += _employees[i].ToString() + "\n";
 			}
-			return string.Format ("[Roster: RosterName={0}, Count={1}]", RosterName, Count) + employeeDescs;
+			return string.Format("[Roster -- RosterName: {0}, Number Of Employees: {1}]", RosterName, Count);
 		}
     }
 }

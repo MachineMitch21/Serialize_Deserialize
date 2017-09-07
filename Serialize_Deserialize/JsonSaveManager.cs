@@ -13,6 +13,16 @@ namespace Serialize_Deserialize
 		{
 			_fileExt = ".json";
 		}
+
+		public override void Save(Roster roster)
+		{
+			throw new NotImplementedException();
+		}
+
+		public override Roster Load(string fileName)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
 

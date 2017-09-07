@@ -33,19 +33,10 @@ namespace Serialize_Deserialize
             rsm.Save(bigRoster);
             
             Roster loadedBigRoster = null;
-            ThreadStart start = new ThreadStart(delegate()
-            {
-                Out("Loading...");
-                loadedBigRoster = rsm.Load("BigRoster");
-            });
 
-            Thread loadThread = new Thread(start);
+            Out("Loading...");
 
-            loadThread.Start();
-            loadThread.Join();
-
-
-            Out("Waiting for loading to complete..");
+            loadedBigRoster = rsm.Load("BigRoster");
 
             Out(loadedBigRoster.ToString());
             Read();
