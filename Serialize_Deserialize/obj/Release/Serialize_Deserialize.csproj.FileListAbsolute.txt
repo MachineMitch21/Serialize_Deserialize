@@ -1,0 +1,7 @@
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Release\Serialize_Deserialize.exe.config
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Release\Serialize_Deserialize.exe
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Release\Serialize_Deserialize.pdb
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\bin\Release\ObjectSerializer.dll
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\obj\Release\Serialize_Deserialize.csprojResolveAssemblyReference.cache
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\obj\Release\Serialize_Deserialize.exe
+C:\Users\mitch\Documents\Visual Studio 2015\Projects\Serialize_Deserialize\Serialize_Deserialize\obj\Release\Serialize_Deserialize.pdb

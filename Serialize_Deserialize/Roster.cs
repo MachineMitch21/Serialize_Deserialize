@@ -50,6 +50,66 @@ namespace Serialize_Deserialize
 			get { return _employees; }
 		}
 
+        public Roster FilterByEmployeeName(string nameToFilterBy)
+        {
+            Roster filteredRoster = new Roster();
+
+            for (int i = 0; i < Count; i++)
+            {
+                if (_employees[i].Name == nameToFilterBy)
+                {
+                    filteredRoster.AddEmployee(_employees[i]);
+                }
+            }
+
+            return filteredRoster;
+        }
+
+        public Roster FilterByEmployeeTitle(string titleToFilterBy)
+        {
+            Roster filteredRoster = new Roster();
+
+            for (int i = 0; i < Count; i++)
+            {
+                if (_employees[i].Title == titleToFilterBy)
+                {
+                    filteredRoster.AddEmployee(_employees[i]);
+                }
+            }
+
+            return filteredRoster;
+        }
+
+        public Roster FilterByEmployeeSalary(float salaryLow, float salaryHigh)
+        {
+            Roster filteredRoster = new Roster();
+
+            for (int i = 0; i < Count; i++)
+            {
+                if (_employees[i].Salary >= salaryLow && _employees[i].Salary <= salaryHigh)
+                {
+                    filteredRoster.AddEmployee(_employees[i]);
+                }
+            }
+
+            return filteredRoster;
+        }
+
+        public Roster FilterByEmployeeID(int idLow, int idHigh)
+        {
+            Roster filteredRoster = new Roster();
+
+            for (int i = 0; i < Count; i++)
+            {
+                if (_employees[i].ID >= idLow && _employees[i].ID <= idHigh)
+                {
+                    filteredRoster.AddEmployee(_employees[i]);
+                }
+            }
+
+            return filteredRoster;
+        }
+
         public int Count { get { return _employees.Count; } }
 
         public void AddEmployee(Employee employeeToAdd)

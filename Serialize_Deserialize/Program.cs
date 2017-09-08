@@ -15,7 +15,7 @@ namespace Serialize_Deserialize
     {
         public static string[] names = new string[10] { "Dan", "Jim", "Donna", "Jessica", "Joe", "Bob", "Heidi", "Jack", "Joanne", "Pat" };
         public static string[] jobs = new string[5] { "Supervisor", "Programmer", "HR", "IT", "Membership Consultant" };
-        public static int[] salaries = new int[5] { 10000, 20000, 30000, 40000, 50000 };
+        public static int[] salaries = new int[6] { 10000, 20000, 30000, 40000, 50000, 60000};
 
         static void Main(string[] args)
 		{
@@ -30,11 +30,16 @@ namespace Serialize_Deserialize
 
             RosterSaveManager rsm = new RosterSaveManager(".xml", "Data/Rosters/", new XmlObjectSaver<Roster>());
 
-            rsm.Save(bigRoster);
+            Roster employeesWithSalaryBetween10000and30000;
 
-            Roster test = rsm.Load("BigRoster");
+            employeesWithSalaryBetween10000and30000 = bigRoster.FilterByEmployeeSalary(50000, 60000);
 
-            Out(test.ToString());
+            Out(employeesWithSalaryBetween10000and30000.ToString());
+            rsm.Save(employeesWithSalaryBetween10000and30000);
+
+            Out("Finished Processing");
+
+            Read();
         }
 
         /// <summary>
