@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
+using ObjectSerializer;
 
 namespace Serialize_Deserialize
 {
-    public abstract class RosterSaveManager
+    public class RosterSaveManager
     {
-        protected string _fileExt = ".txt";
+        protected string _fileExt = ".bin";
         protected string _filePath = "Data/Rosters/";
 
         public RosterSaveManager()
@@ -27,15 +28,25 @@ namespace Serialize_Deserialize
         /// <summary>
         /// Saves the specified roster to a file.  (Binary (use BinarySaveManager) or Xml (use XmlSaveManager) files supported depending on object used to save)
         /// </summary>
-        /// <param name="Roster"></param>
-		public abstract void Save(Roster Roster);
+        /// <param name="roster"></param>
+		public void Save(Roster roster)
+        {
+            BinaryObjectSaver<Roster> rosterSaver = new BinaryObjectSaver<Roster>();
+
+            rosterSaver.Save(roster, new FileStream(_filePath + verifyExtension(roster.RosterName), FileMode.Create));
+        }
 
         /// <summary>
         /// Loads a file with the specified name.  (Files must be loaded using the same type of save manager they were saved with)
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>Roster</returns>
-		public abstract Roster Load(string fileName);
+		public Roster Load(string fileName)
+        {
+            BinaryObjectSaver<Roster> rosterLoader = new BinaryObjectSaver<Roster>();
+
+            return rosterLoader.Load(new FileStream(_filePath + verifyExtension(fileName), FileMode.Open));
+        }
 
         /// <summary>
         /// Gets a list of file names located within the path specified in the _filePath for the save manager

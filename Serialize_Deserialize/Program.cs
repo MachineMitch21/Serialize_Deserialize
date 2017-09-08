@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-
+using ObjectSerializer;
+using System.IO;
 
 
 namespace Serialize_Deserialize
@@ -27,96 +28,13 @@ namespace Serialize_Deserialize
                 bigRoster.AddEmployee(new Employee(i + 1, names[random.Next(0, names.Length - 1)], jobs[random.Next(0, jobs.Length - 1)], salaries[random.Next(0, salaries.Length - 1)]));
             }
 
-            RosterSaveManager rsm = new XmlSaveManager();
+            RosterSaveManager rsm = new RosterSaveManager();
 
-            Out("Saving...");
             rsm.Save(bigRoster);
-            
-            Roster loadedBigRoster = null;
 
-            Out("Loading...");
+            Roster test = rsm.Load("BigRoster");
 
-            loadedBigRoster = rsm.Load("BigRoster");
-
-            Out(loadedBigRoster.ToString());
-            Read();
-        }
-
-
-		//All of these functions could eventually be used for an interactive console implementation of the roster program
-        static void AddEmployeeOrSaveAndExit(ref Roster r)
-        {
-            Out("Type 'save' to save and exit");
-            Out("");
-            Out("");
-            Out("Create Employee?");
-
-            string create = ReadLine();
-
-            if (create == "yes")
-            {
-                Out("Employee Name: ");
-                string name = ReadLine();
-
-                Out("");
-
-                Out("Employee Title: ");
-                string title = ReadLine();
-
-                Out("");
-
-                Out("Employee Salary: ");
-                string salary = ReadLine();
-
-                Employee e = new Employee(r.Count + 1, name, title, Convert.ToSingle(salary));
-
-                r.AddEmployee(e);
-
-                AddEmployeeOrSaveAndExit(ref r);
-            }
-            else
-            {
-                RosterSaveManager rsm = new BinarySaveManager();
-                rsm.Save(r);
-            }
-        }
-
-        static char AskInitialQuestion()
-        {
-            Out("Hello, would you like to load a roster?");
-            Out("Y");
-            Out("N");
-
-            return Convert.ToChar(Read());
-        }
-
-        static Roster CreateNewRoster()
-        {
-            Out("Create New Roster: ");
-            Out("");
-
-            string rosterName = ReadLine();
-
-            Roster roster = new Roster(rosterName);
-
-            return roster;
-        }
-
-        static char GetRosterToLoad()
-        {
-            DisplayRosters();
-
-            return Convert.ToChar(Read());
-        }
-
-        static void DisplayRosters()
-        {
-            RosterSaveManager rsm = new BinarySaveManager();
-
-            for (int i = 0; i < rsm.GetRosterFileNames().Length; i++)
-            {
-                Out(String.Format("{0}: {1}", (i), rsm.GetRosterFileNames()[i]));
-            }
+            Out(test.ToString());
         }
 
         /// <summary>
