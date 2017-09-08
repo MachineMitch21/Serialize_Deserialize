@@ -58,7 +58,7 @@ namespace Serialize_Deserialize
         }
 
         /// <summary>
-        /// Saves the specified roster to a file.  (Binary (use BinarySaveManager) or Xml (use XmlSaveManager) files supported depending on object used to save)
+        /// Saves the specified roster to a file. 
         /// </summary>
         /// <param name="roster"></param>
 		public void Save(Roster roster)
@@ -74,7 +74,7 @@ namespace Serialize_Deserialize
         }
 
         /// <summary>
-        /// Loads a file with the specified name.  (Files must be loaded using the same type of save manager they were saved with)
+        /// Loads a roster file with the specified name.
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>Roster</returns>
