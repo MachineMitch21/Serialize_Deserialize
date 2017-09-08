@@ -28,7 +28,7 @@ namespace Serialize_Deserialize
                 bigRoster.AddEmployee(new Employee(i + 1, names[random.Next(0, names.Length - 1)], jobs[random.Next(0, jobs.Length - 1)], salaries[random.Next(0, salaries.Length - 1)]));
             }
 
-            RosterSaveManager rsm = new RosterSaveManager();
+            RosterSaveManager rsm = new RosterSaveManager(".xml", "Data/Rosters/", new XmlObjectSaver<Roster>());
 
             rsm.Save(bigRoster);
 

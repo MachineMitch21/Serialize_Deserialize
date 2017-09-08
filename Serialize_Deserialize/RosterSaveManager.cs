@@ -6,18 +6,50 @@ using ObjectSerializer;
 
 namespace Serialize_Deserialize
 {
+    /// <summary>
+    /// Saves a roster object to a file.  (FilePath default: "Data/Rosters/") (FileExt default: ".bin") (ObjectSaver<Roster> default: BinaryObjectSaver<Roster>)
+    /// </summary>
     public class RosterSaveManager
     {
         protected string _fileExt = ".bin";
         protected string _filePath = "Data/Rosters/";
 
+        protected ObjectSaver<Roster> _objSaver;
+
         public RosterSaveManager()
         {
-			if (!Directory.Exists(_filePath))
-            {
-				Directory.CreateDirectory(_filePath);
-            }
+            verifyPathDirectory();
+
+            _objSaver = new BinaryObjectSaver<Roster>();
         }
+
+        public RosterSaveManager(ObjectSaver<Roster> objSaver)
+        {
+            verifyPathDirectory();
+
+            _objSaver = objSaver;
+        }
+
+        public RosterSaveManager(string fileExt, string filePath)
+        {
+            _filePath = filePath;
+            _fileExt = fileExt;
+
+            verifyPathDirectory();
+
+            _objSaver = new BinaryObjectSaver<Roster>();
+        }
+
+        public RosterSaveManager(string fileExt, string filePath, ObjectSaver<Roster> objSaver)
+        {
+            _filePath = filePath;
+            _fileExt = fileExt;
+
+            verifyPathDirectory();
+
+            _objSaver = objSaver;
+        }
+
 
         public string FilePath
         {
@@ -31,9 +63,14 @@ namespace Serialize_Deserialize
         /// <param name="roster"></param>
 		public void Save(Roster roster)
         {
-            BinaryObjectSaver<Roster> rosterSaver = new BinaryObjectSaver<Roster>();
-
-            rosterSaver.Save(roster, new FileStream(_filePath + verifyExtension(roster.RosterName), FileMode.Create));
+            try
+            {
+                _objSaver.Save(roster, new FileStream(_filePath + verifyExtension(roster.RosterName), FileMode.Create));
+            }
+            catch(IOException e)
+            {
+                Console.WriteLine(string.Format("Error writing to the specified path ({0}) \n ERROR REPORT: {1}", _filePath, e.Message));
+            }
         }
 
         /// <summary>
@@ -43,9 +80,19 @@ namespace Serialize_Deserialize
         /// <returns>Roster</returns>
 		public Roster Load(string fileName)
         {
-            BinaryObjectSaver<Roster> rosterLoader = new BinaryObjectSaver<Roster>();
+            Roster loadedRoster = null;
 
-            return rosterLoader.Load(new FileStream(_filePath + verifyExtension(fileName), FileMode.Open));
+            try
+            {
+                loadedRoster = _objSaver.Load(new FileStream(_filePath + verifyExtension(fileName), FileMode.Open));
+                return loadedRoster;
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(string.Format("Error reading from the specified path ({0}) \n ERROR REPORT: {1}", _filePath, e.Message));
+            }
+
+            return loadedRoster;
         }
 
         /// <summary>
@@ -79,7 +126,6 @@ namespace Serialize_Deserialize
 			return (fileName += _fileExt);
         }
 
-
         /// <summary>
         /// Verifies the extension is present in the string parameter.  Doesn't change the original variable's value
         /// </summary>
@@ -94,5 +140,13 @@ namespace Serialize_Deserialize
 
 			return (fileName + _fileExt);
 		}
+
+        protected void verifyPathDirectory()
+        {
+            if (!Directory.Exists(_filePath))
+            {
+                Directory.CreateDirectory(_filePath);
+            }
+        }
     }
 }
